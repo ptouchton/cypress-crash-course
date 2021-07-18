@@ -5,7 +5,7 @@ describe('locators', () => {
       cy.visit('/elements')
     });
 
-    it('locators should find', () => {
+    it('locators with get', () => {
         // Get all elements by tag name
         cy.get("button")
 
@@ -38,5 +38,28 @@ describe('locators', () => {
         cy.getByTestId('btn-id-1')
 
     });
+
+    it('locating elements with contain', () => {
+        // Get element by text
+        cy.contains("Unique Text")
+
+        // Get element by text
+        cy.contains("Not Unique Text")
+
+        // Combine get with contains
+        cy.get("[type='submit']").contains("Not Unique Text")
+
+        // Get element by tag name and text
+        cy.contains("[type='submit']", "Not Unique Text")
+
+        // Get element by descent and text 
+        cy.contains("span", "Not Unique Text")
+        cy.contains("form", "Not Unique Text")
+        cy.get("form").contains("Not Unique Text")
+    })
+
+    it("locating elements with find", () => {
+        cy.get("#form-1").find(".btn-1")
+    })
 });
   
